@@ -11,7 +11,7 @@ services:
       - petricnet
 
   pypi-service:
-    image: pypi-service
+    image: petrichor-pypi-service
     container_name: pypi-server
     build: ./services/pypi-service/
     restart: always
@@ -24,8 +24,8 @@ services:
 
 
   api:
-    image: services-api
-    build: ./services/api/
+    image: petrichor-weather-api
+    build: ./services/weather-api/
     env_file:
       - ./services/api/environ_vars.env
     tty: true
@@ -39,7 +39,7 @@ services:
       - petricnet
 
   web:
-    image: services-web
+    image: petrichor-web
     build: ./services/web/static
     tty: true
     ports:
