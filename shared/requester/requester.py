@@ -11,6 +11,6 @@ class WebAPIRequester:
         web_req = WebAPIRequester()
         web_req.url = url
 
-    def get(self, resource)
+    def get(self, resource):
         endpoint = urljoin(self.url, resource)
         response = requests.get(endpoint)
