@@ -1,0 +1,1 @@
+weather_service = weather_service.WeatherService()

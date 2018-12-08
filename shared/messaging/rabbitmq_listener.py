@@ -24,6 +24,7 @@ class RabbitMQListener:
         channel.basic_consume(callback, queue=self.routing_key, no_ack=True)
 
         try:
+            self.logger.debug(f"Consuming on queue: {self.queue_name}")
             channel.start_consuming()
 
         except Exception as e:
