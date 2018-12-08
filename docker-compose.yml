@@ -13,7 +13,7 @@ services:
   pypi-service:
     image: pypi-service
     container_name: pypi-server
-    build: ./packages/
+    build: ./services/pypi-service/
     restart: always
     ports:
       - 8081:8081
@@ -36,7 +36,7 @@ services:
     ports:
       - 5000:5000
     networks:
-      - confluence
+      - petricnet
 
   web:
     image: services-web
