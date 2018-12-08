@@ -5,7 +5,7 @@ RUN apk update && apk add bash build-base python3-dev libffi-dev gcc
 WORKDIR /app
 
 COPY ./ ./
-RUN pip install pypiserver
+RUN pip3 install pypiserver
 
 RUN ["chmod", "+x", "./run.sh"]
 ENTRYPOINT ["bash", "./run.sh"]

@@ -8,6 +8,7 @@ COPY requirements.txt .
 RUN pip install -r requirements.txt
 
 COPY . ./
+RUN pip3 install -r local_packages.txt
 
 RUN ["chmod", "+x", "./run.sh"]
 ENTRYPOINT ./run.sh
