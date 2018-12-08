@@ -2,9 +2,9 @@ import os
 import glob
 from shutil import copyfile, SameFileError
 
-SERVICES_HOME = os.environ.get("SERVICES_HOME")
+PETRICHOR_HOME = os.environ.get("PETRICHOR_HOME")
 
-for filename in glob.iglob(RR_HOME + '/services/**/*tar.gz', recursive=True):
+for filename in glob.iglob(PETRICHOR_HOME + '/services/**/*tar.gz', recursive=True):
     if "site-packages" not in filename:
         head, fname = os.path.split(filename)
         dest = os.path.join(RR_HOME, "packages", "python", fname)
