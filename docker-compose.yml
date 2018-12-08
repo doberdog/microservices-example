@@ -30,8 +30,7 @@ services:
       - ./services/api/environ.env
     tty: true
     depends_on:
-      - "pypi-server"
-      - "postgres"
+      - "pypi-service"
       - "rabbitmq"
     ports:
       - 5000:5000
@@ -48,7 +47,6 @@ services:
       - petricnet
     depends_on:
       - "pypi-server"
-      - "postgres"
       - "rabbitmq"
 
   log-service:
@@ -60,7 +58,6 @@ services:
     networks:
       - petricnet
     depends_on:
-      - "postgres"
       - "rabbitmq"
 
 networks:
