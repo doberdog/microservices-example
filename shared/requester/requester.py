@@ -7,7 +7,7 @@ class WebAPIRequester:
         self.url = None
 
     @staticmethod
-    def for_url(self, url):
+    def for_url(url):
         web_req = WebAPIRequester()
         web_req.url = url
 
