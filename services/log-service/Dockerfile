@@ -1,17 +1,14 @@
-FROM microsoft/dotnet:sdk AS build-env
+FROM python:3.6-alpine
+
+RUN apk update && apk add bash build-base python3-dev libffi-dev postgresql-libs postgresql-dev gcc musl-dev
+
 WORKDIR /app
 
-# Copy csproj and restore as distinct layers
-COPY *.csproj ./
-RUN dotnet restore
+COPY requirements.txt .
+RUN pip install -r requirements.txt
 
-# Copy everything else and build
 COPY . ./
-RUN dotnet publish -c Release -o out
 
-# Build runtime image
-FROM microsoft/dotnet:aspnetcore-runtime
-WORKDIR /app
-COPY --from=build-env /app/out .
-ENTRYPOINT ["dotnet", "aspnetapp.dll"]
+RUN ["chmod", "+x", "./run.sh"]
+ENTRYPOINT ./run.sh
 

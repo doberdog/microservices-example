@@ -9,8 +9,6 @@ RUN pip install -r requirements.txt
 
 COPY . ./
 
-RUN ["mkdir", "-p", "app/uploads"]
-
 RUN ["chmod", "+x", "./run.sh"]
 ENTRYPOINT ./run.sh
 
