@@ -24,10 +24,10 @@ services:
 
 
   api:
-    image: petrichor-weather-api
-    build: ./services/weather-api/
+    image: petrichor-weather-service
+    build: ./services/weather-service/
     env_file:
-      - ./services/api/environ_vars.env
+      - ./services/api/environ.env
     tty: true
     depends_on:
       - "pypi-server"
@@ -48,6 +48,18 @@ services:
       - petricnet
     depends_on:
       - "pypi-server"
+      - "postgres"
+      - "rabbitmq"
+
+  log-service:
+    image: petrichorlog-service
+    build: ./services/log-service/
+    tty: true
+    ports:
+      - 3000:3000
+    networks:
+      - petricnet
+    depends_on:
       - "postgres"
       - "rabbitmq"
 
