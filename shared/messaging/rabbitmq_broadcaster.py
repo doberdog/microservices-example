@@ -5,10 +5,12 @@ import json
 
 import pika
 
+from shared.messaging.rabbitmq_connector import RabbitMQConnector
 
-class RabbitBroadcaster:
 
-    def __init__(self, rabbit_connector):
+class RabbitMQBroadcaster:
+
+    def __init__(self, rabbit_connector=RabbitMQConnector()):
         self.rabbit = rabbit_connector
 
     def broadcast(self, message, routing_key):

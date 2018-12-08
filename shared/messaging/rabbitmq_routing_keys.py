@@ -1,4 +1,4 @@
-class RabbitMQRoutingKeys(object):
+class PetrichorRoutingKeys(object):
     """
     Wrap strings for RabbitMQ Routing Keys
     """

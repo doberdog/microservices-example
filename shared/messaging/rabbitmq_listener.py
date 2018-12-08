@@ -8,7 +8,7 @@ class RabbitMQListener:
     Declares a RabbitMQ Exchange; declares and binds to a RabbitMQ queue
     """
 
-    def __init__(self, rabbit_connector, routing_key):
+    def __init__(self, routing_key, rabbit_connector=RabbitMQConnector()):
         self.logger = logging.getLogger()
         self.rabbit = rabbit_connector
         self.queue_name = routing_key
