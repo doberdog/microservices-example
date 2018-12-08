@@ -9,4 +9,3 @@ RUN pip install pypiserver
 
 RUN ["chmod", "+x", "./run.sh"]
 ENTRYPOINT ["bash", "./run.sh"]
-
