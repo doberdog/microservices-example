@@ -5,8 +5,8 @@ from shutil import copyfile, SameFileError
 from setuptools import sandbox
 
 PETRICHOR_HOME = os.environ.get("PETRICHOR_HOME")
-SETUP_FILES = PETRICHOR_HOME + '/services/**/*setup.py'
-WHLS = PETRICHOR_HOME + '/services/**/*whl'
+SETUP_FILES = PETRICHOR_HOME + '/shared/**/*setup.py'
+WHLS = PETRICHOR_HOME + '/shared/**/*whl'
 PACKAGES_HOME = os.path.join(PETRICHOR_HOME, 'services', 'pypi-service', 'python')
 
 if not os.path.exists(PACKAGES_HOME):

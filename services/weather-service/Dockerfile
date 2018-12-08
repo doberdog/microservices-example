@@ -7,6 +7,9 @@ WORKDIR /app
 COPY requirements.txt .
 RUN pip install -r requirements.txt
 
+COPY local_packages.txt .
+RUN pip install -r local_packages.txt
+
 COPY . ./
 
 RUN ["chmod", "+x", "./run.sh"]

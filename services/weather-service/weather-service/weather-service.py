@@ -19,5 +19,11 @@ class WeatherService:
     def run(self):
         self.listener.consume(self.handle_request)
 
-    def handle_request(self):
-        pass
+    @staticmethod
+    def handle_request():
+        print("weather service received request!")
+
+
+if __name__ == "__main__":
+    service = WeatherService()
+    service.run()
