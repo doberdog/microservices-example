@@ -37,9 +37,17 @@ services:
       - petricnet
 
   log-service:
-    image: petrichorlog-service
+    image: petrichor-log-service
     build: ./services/log-service/
     tty: true
+    networks:
+      - petricnet
+    depends_on:
+      - "rabbitmq"
+
+  web:
+    image: petrichor-web
+    build: ./services/web/petrichor/
     ports:
       - 3000:3000
     networks:
