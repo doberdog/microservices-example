@@ -1,0 +1,56 @@
+version: '3.7'
+
+services:
+  rabbitmq:
+    image: rabbitmq:3.7-management
+    tty: true
+    ports:
+      - 5678:5679    # note port remapping
+      - 15678:15679  # note port remapping
+    networks:
+      - layernet
+
+  pypi-service:
+    image: pypi-service
+    container_name: pypi-server
+    build: ./packages/
+    restart: always
+    ports:
+      - 8081:8081
+    networks:
+      - layernet
+    depends_on:
+    - "rabbitmq"
+
+
+  api:
+    image: services-api
+    build: ./services/api/
+    env_file:
+      - ./services/api/environ_vars.env
+    tty: true
+    depends_on:
+      - "pypi-server"
+      - "postgres"
+      - "rabbitmq"
+    ports:
+      - 5000:5000
+    networks:
+      - confluence
+
+  web:
+    image: services-web
+    build: ./services/web/static
+    tty: true
+    ports:
+      - 3000:3000
+    networks:
+      - layernet
+    depends_on:
+      - "pypi-server"
+      - "postgres"
+      - "rabbitmq"
+
+networks:
+  layernet:
+    driver: bridge
