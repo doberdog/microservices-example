@@ -20,7 +20,7 @@ services:
     networks:
       - petricnet
     depends_on:
-    - "rabbitmq"
+    - rabbitmq
 
   weather-service:
     image: petrichor-weather-service
@@ -29,10 +29,8 @@ services:
       - ./services/weather-service/environ.env
     tty: true
     depends_on:
-      - "pypi-service"
-      - "rabbitmq"
-    ports:
-      - 5000:5000
+      - pypi-service
+      - rabbitmq
     networks:
       - petricnet
 
@@ -43,7 +41,8 @@ services:
     networks:
       - petricnet
     depends_on:
-      - "rabbitmq"
+      - pypi-service
+      - rabbitmq
 
   web:
     image: petrichor-web
@@ -53,7 +52,7 @@ services:
     networks:
       - petricnet
     depends_on:
-      - "rabbitmq"
+      - rabbitmq
 
 networks:
   petricnet:
