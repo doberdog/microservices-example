@@ -22,7 +22,7 @@ services:
     depends_on:
     - "rabbitmq"
 
-  api:
+  weather-service:
     image: petrichor-weather-service
     build: ./services/weather-service/
     env_file:
