@@ -17,4 +17,7 @@ class WeatherService:
         self.listener = RabbitMQListener(routing_key=PetrichorRoutingKeys.WEATHER_SERVICE)
 
     def run(self):
+        self.listener.consume(self.handle_request)
+
+    def handle_request(self):
         pass
