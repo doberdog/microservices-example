@@ -32,38 +32,40 @@ services:
     build: ./services/pypi-service/
     restart: always
     ports:
-      - 8081:8081
+    - 8081:8081
     depends_on:
-      - rabbitmq
+    - rabbitmq
 
   weather-service:
     image: petrichor-weather-service
     build: ./services/weather-service/
     env_file:
-      - ./services/weather-service/environ.env
+    - ./services/weather-service/environ.env
     tty: true
     depends_on:
-      - pypi-service
-      - postgres
-      - rabbitmq
+    - pypi-service
+    - postgres
+    - rabbitmq
 
   log-service:
     image: petrichor-log-service
     build: ./services/log-service/
     tty: true
+    env_file:
+    - ./services/log-service/environ.env
     depends_on:
-      - pypi-service
-      - postgres
-      - rabbitmq
+    - pypi-service
+    - postgres
+    - rabbitmq
 
   web:
     image: petrichor-web
     build: ./services/web/petrichor/
     ports:
-      - 3000:3000
+    - 3000:3000
     depends_on:
-      - rabbitmq
-      - postgres
+    - rabbitmq
+    - postgres
 
   volumes:
     pgdata:
