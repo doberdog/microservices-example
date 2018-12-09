@@ -3,11 +3,11 @@ version: '3.7'
 services:
   postgres:
     image: postgres
+    env_file:
+    - ./docker-postgres/environ_vars.env
     build:
       context: ./docker-postgres
     restart: always
-    environment:
-      POSTGRES_PASSWORD: example
     ports:
     - '127.0.0.1:5432:5432'
 
