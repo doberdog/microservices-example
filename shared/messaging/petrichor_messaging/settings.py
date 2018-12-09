@@ -1,6 +1,6 @@
 RABBIT_EXCHANGE = "petrichor_exchange"
 RABBIT_HOST = "rabbitmq"
-RABBIT_PORT = 5679
+RABBIT_PORT = 5672
 RABBIT_USER = "guest"
 RABBIT_PASS = "guest"
 

@@ -5,8 +5,8 @@ services:
     image: rabbitmq:3.7-management
     tty: true
     ports:
-      - 5678:5679    # note port remapping
-      - 15678:15679  # note port remapping
+      - 5672:5672
+      - 15672:15672
 
   pypi-service:
     image: petrichor-pypi-service
