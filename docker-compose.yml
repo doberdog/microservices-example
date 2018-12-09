@@ -7,8 +7,6 @@ services:
     ports:
       - 5678:5679    # note port remapping
       - 15678:15679  # note port remapping
-    networks:
-      - petricnet
 
   pypi-service:
     image: petrichor-pypi-service
@@ -17,10 +15,8 @@ services:
     restart: always
     ports:
       - 8081:8081
-    networks:
-      - petricnet
     depends_on:
-    - rabbitmq
+      - rabbitmq
 
   weather-service:
     image: petrichor-weather-service
@@ -31,15 +27,11 @@ services:
     depends_on:
       - pypi-service
       - rabbitmq
-    networks:
-      - petricnet
 
   log-service:
     image: petrichor-log-service
     build: ./services/log-service/
     tty: true
-    networks:
-      - petricnet
     depends_on:
       - pypi-service
       - rabbitmq
@@ -49,11 +41,5 @@ services:
     build: ./services/web/petrichor/
     ports:
       - 3000:3000
-    networks:
-      - petricnet
     depends_on:
       - rabbitmq
-
-networks:
-  petricnet:
-    driver: bridge

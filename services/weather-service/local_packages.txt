@@ -1,4 +1,2 @@
---extra-index-url http://petricnet:8081 --trusted-host petricnet
-
-petrichor-messaging
 petrichor-api-tools
+petrichor-messaging
