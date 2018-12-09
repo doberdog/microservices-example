@@ -17,4 +17,4 @@ class WebAPIRequester:
     def get(self, resource):
         endpoint = urljoin(self.url, resource) + "&appid=" + self.api_key
         response = requests.get(endpoint)
-        print(json.loads(response))
+        print(response.text)
