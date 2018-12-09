@@ -7,12 +7,13 @@ from petrichor_messaging.rabbitmq_broadcaster import RabbitMQBroadcaster
 from petrichor_messaging.rabbitmq_connector import RabbitMQConnector
 from petrichor_messaging.rabbitmq_listener import RabbitMQListener
 from petrichor_messaging.rabbitmq_routing_keys import PetrichorRoutingKeys
+from .settings import WEATHER_API_URL, WEATHER_API_KEY
 
 
 class WeatherService:
     def __init__(self):
         print("WeatherService Starting")
-        self.requester = WebAPIRequester.for_url('foo')
+        self.requester = WebAPIRequester.for_url(WEATHER_API_URL, WEATHER_API_KEY)
 
         self.rabbit_connector = None
         self.broadcaster = None
@@ -20,6 +21,7 @@ class WeatherService:
 
     def run(self):
         self.print_startup_message()
+        self.requester.get("?zip=94040,us")
         self.setup_rabbit()
         self.listener.consume(self.handle_request)
 
