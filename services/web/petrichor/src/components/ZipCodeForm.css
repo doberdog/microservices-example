@@ -1,0 +1,29 @@
+input 				{
+    color:#555;
+    text-align: center;
+    font-size:2em;
+    padding: 5px;
+    display:block;
+    border:none;
+    border-bottom:1px solid #757575;
+    margin: 8px;
+}
+
+.btn {
+    display: block;
+    font-size:1.4em;
+    margin: 30px auto;
+    padding: 12px;
+    overflow: hidden;
+    border-width: 0;
+    outline: none;
+    border-radius: 2px;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, .6);
+    background-color: #2ecc71;
+    color: #ecf0f1;
+    transition: background-color .3s;;
+}
+
+.btn:hover, .btn:focus {
+    background-color: #27ae60;
+}
