@@ -1,6 +1,10 @@
 """
 The WeatherService invokes a web API to provide data about the weather
 """
+from rabbitmq_broadcaster import RabbitMQBroadcaster
+from rabbitmq_listener import RabbitMQListener
+from rabbitmq_routing_keys import PetrichorRoutingKeys
+from requester import WebAPIRequester
 from .settings import WEATHER_API_URL
 
 
