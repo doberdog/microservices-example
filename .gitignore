@@ -117,3 +117,5 @@ dmypy.json
 *.idea
 
 *.whl
+
+**.env
