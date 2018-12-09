@@ -1,2 +1,4 @@
--i http://petricnet:8081 petrichor-messaging
--i http://petricnet:8081 petrichor-requester
+--extra-index-url http://petricnet:8081 --trusted-host petricnet
+
+petrichor-messaging
+petrichor-requester
