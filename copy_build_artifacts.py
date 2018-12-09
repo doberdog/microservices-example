@@ -6,7 +6,7 @@ from setuptools import sandbox
 
 PETRICHOR_HOME = os.environ.get("PETRICHOR_HOME")
 SETUP_FILES = PETRICHOR_HOME + '/shared/**/*setup.py'
-WHLS = PETRICHOR_HOME + '/shared/**/*whl'
+TARS = PETRICHOR_HOME + '/shared/**/*tar.gz'
 PACKAGES_HOME = os.path.join(PETRICHOR_HOME, 'services', 'pypi-service', 'python')
 
 if not os.path.exists(PACKAGES_HOME):
@@ -19,7 +19,7 @@ print(f"Step 1: Exploring {PETRICHOR_HOME} for setup files")
 for filename in glob.iglob(SETUP_FILES, recursive=True):
     setup_files.append(filename)
     print(f"Running setup for: {filename}")
-    sandbox.run_setup(filename, ['clean', 'sdist'])
+    sandbox.run_setup(filename, ['sdist'])
 
 print("\n")
 print(f"{len(setup_files)} packages built.")
@@ -28,13 +28,13 @@ print("\n")
 print(f"Step 2: Exploring {PETRICHOR_HOME} for python packages")
 
 
-whl_files = []
+tarballs = []
 
-for filename in glob.iglob(WHLS, recursive=True):
+for filename in glob.iglob(TARS, recursive=True):
     print(filename)
     if "site-packages" not in filename:
         head, fname = os.path.split(filename)
-        whl_files.append(fname)
+        tarballs.append(fname)
         dest = os.path.join(PACKAGES_HOME, fname)
         try:
             print(f"Copying [{fname}] to: {dest}")
@@ -44,8 +44,6 @@ for filename in glob.iglob(WHLS, recursive=True):
 
 print("\n")
 print(f"Build and copy complete. PyPI Can now serve the following packages:")
-for whl in whl_files:
-    print(whl)
-
-print("----------------------------------------")
+for tb in tarballs:
+    print(tb)
 
