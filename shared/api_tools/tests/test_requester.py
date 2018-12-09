@@ -1,4 +1,4 @@
-import requester
+from petrichor_requester import requester
 
 
 class TestWebAPIRequester:

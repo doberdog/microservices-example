@@ -6,7 +6,7 @@ import logging
 import pika
 from pika import BlockingConnection
 
-from shared.messaging.settings import RABBIT_HOST, RABBIT_PORT, RABBIT_EXCHANGE, RABBIT_USER, RABBIT_PASS, \
+from petrichor_messaging.settings import RABBIT_HOST, RABBIT_PORT, RABBIT_EXCHANGE, RABBIT_USER, RABBIT_PASS, \
     RABBIT_CONN_MAX_ATTEMPTS, RABBIT_CONN_RETRY_TIMEOUT
 
 

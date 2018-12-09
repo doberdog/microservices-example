@@ -1,6 +1,6 @@
 import logging
 
-from shared.messaging.rabbitmq_connector import RabbitMQConnector
+from petrichor_messaging.rabbitmq_connector import RabbitMQConnector
 
 
 class RabbitMQListener:
