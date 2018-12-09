@@ -4,19 +4,28 @@
   "private": true,
   "dependencies": {
     "amqplib": "^0.5.3",
+    "express": "^4.16.4",
     "react": "^16.6.3",
     "react-dom": "^16.6.3",
-    "react-scripts": "2.1.1"
+    "react-scripts": "2.1.1",
+    "socket.io": "^2.2.0"
   },
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "client": "cd client && yarn start",
+    "server": "nodemon server.js",
+    "dev": "concurrently --kill-others-on-fail \"yarn server\" \"yarn client\""
   },
   "eslintConfig": {
     "extends": "react-app"
   },
+  "proxy": "http://localhost:5000/",
+  // using Express server with a create-react-app project => use a proxy.
+  // Tells Webpack dev server to proxy API requests our API server
+  // which is running on localhost:5000.
   "browserslist": [
     ">0.2%",
     "not dead",
