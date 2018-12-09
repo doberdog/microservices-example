@@ -5,12 +5,10 @@ import json
 
 import pika
 
-from petrichor_messaging.rabbitmq_connector import RabbitMQConnector
-
 
 class RabbitMQBroadcaster:
 
-    def __init__(self, rabbit_connector=RabbitMQConnector()):
+    def __init__(self, rabbit_connector):
         self.rabbit = rabbit_connector
 
     def broadcast(self, message, routing_key):

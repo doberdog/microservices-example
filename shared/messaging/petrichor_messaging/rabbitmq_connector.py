@@ -40,6 +40,7 @@ class RabbitMQConnector:
         self.declare_exchange()
 
     def create_channel(self):
+        self.logger.debug(f"Creating RabbitMQ Channel...")
         try:
             channel = self.connection.channel()
             self.logger.debug(f"Created a RabbitMQ Channel [{channel}]")
@@ -54,6 +55,7 @@ class RabbitMQConnector:
         Returns a BlockingConnection to a RabbitMQ server with
         the credentials specified in the class ctor
         """
+        self.logger.debug(f"Creating RabbitMQ Connection on {self.host}:{self.port}")
         connection_params = pika.ConnectionParameters(
                 host=self.host,
                 port=self.port,
