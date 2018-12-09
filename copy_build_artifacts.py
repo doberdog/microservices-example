@@ -19,7 +19,7 @@ print(f"Step 1: Exploring {PETRICHOR_HOME} for setup files")
 for filename in glob.iglob(SETUP_FILES, recursive=True):
     setup_files.append(filename)
     print(f"Running setup for: {filename}")
-    sandbox.run_setup(filename, ['clean', 'bdist_wheel'])
+    sandbox.run_setup(filename, ['clean', 'sdist'])
 
 print("\n")
 print(f"{len(setup_files)} packages built.")
