@@ -7,12 +7,13 @@ from petrichor_messaging.rabbitmq_broadcaster import RabbitMQBroadcaster
 from petrichor_messaging.rabbitmq_connector import RabbitMQConnector
 from petrichor_messaging.rabbitmq_listener import RabbitMQListener
 from petrichor_messaging.rabbitmq_routing_keys import PetrichorRoutingKeys
+from petrichor_weather_service.settings import WEATHER_API_URL, WEATHER_API_KEY
 
 
-class LogService:
+class WeatherService:
     def __init__(self):
-        print("LogService Starting")
-        self.requester = WebAPIRequester.for_url('foo')
+        print("WeatherService Starting")
+        self.requester = WebAPIRequester.for_url(WEATHER_API_URL, WEATHER_API_KEY)
 
         self.rabbit_connector = None
         self.broadcaster = None
@@ -20,6 +21,7 @@ class LogService:
 
     def run(self):
         self.print_startup_message()
+        self.requester.get("?zip=94040,us")
         self.setup_rabbit()
         self.listener.consume(self.handle_request)
 
@@ -29,16 +31,16 @@ class LogService:
 
     @staticmethod
     def print_startup_message():
-        print("=======================")
-        print("Log Service is started!")
-        print("=======================")
+        print("===========================")
+        print("Weather Service is started!")
+        print("===========================")
 
     def setup_rabbit(self):
         self.rabbit_connector = RabbitMQConnector()
         self.broadcaster = RabbitMQBroadcaster(self.rabbit_connector)
-        self.listener = RabbitMQListener(routing_key=PetrichorRoutingKeys.LOG_SERVICE)
+        self.listener = RabbitMQListener(routing_key=PetrichorRoutingKeys.WEATHER_SERVICE)
 
 
 if __name__ == "__main__":
-    service = LogService()
+    service = WeatherService()
     service.run()
