@@ -1,5 +1,3 @@
-import logging
-
 from petrichor_messaging.rabbitmq_connector import RabbitMQConnector
 
 
@@ -9,7 +7,6 @@ class RabbitMQListener:
     """
 
     def __init__(self, routing_key, rabbit_connector=RabbitMQConnector()):
-        self.logger = logging.getLogger()
         self.rabbit = rabbit_connector
         self.queue_name = routing_key
         self.routing_key = routing_key
@@ -18,17 +15,17 @@ class RabbitMQListener:
         """
         Binds a channel to this queue and starts consuming with the provided callback function
         """
-        channel = self.rabbit.channel()
+        channel = self.rabbit.channel
         channel.queue_declare(queue=self.queue_name)
-        channel.queue_bind(exchange=self.rabbit.exchange, queue=self.queue_name)
+        channel.queue_bind(exchange=self.rabbit.conn_params.exchange, queue=self.queue_name)
         channel.basic_consume(callback, queue=self.routing_key, no_ack=True)
 
         try:
-            self.logger.debug(f"Consuming on queue: {self.queue_name}")
+            print(f"Consuming on queue: {self.queue_name}")
             channel.start_consuming()
 
         except Exception as e:
-            self.logger.error(e)
+            print(e)
             channel.stop_consuming()
             self.rabbit.connection.close()
 
@@ -37,4 +34,4 @@ class RabbitMQListener:
         Makes a specific number of connection attempts to a RabbitMQ server
         """
         self.rabbit = RabbitMQConnector()
-        self.logger.info("Connected to RabbitMQ!")
+        print("Connected to RabbitMQ!")
