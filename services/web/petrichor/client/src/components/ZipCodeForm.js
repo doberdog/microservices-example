@@ -11,8 +11,7 @@ export default class ZipCodeForm extends React.Component {
 
     static isValidZipCode(e)  {
         const re = /^[0-9\b]+$/;
-        return e.target.value === ''
-            || re.test(e.target.value)
+        return (e.target.value === '' || re.test(e.target.value))
             && e.target.value.length < 6
     }
 
@@ -37,15 +36,14 @@ export default class ZipCodeForm extends React.Component {
     callApi = async () => {
         const response = await fetch('/api/hello');
         const body = await response.json();
-
         if (response.status !== 200) throw Error(body.message);
-
         return body;
     };
 
     handleSubmit = async e => {
+        console.log(this.state);
         e.preventDefault();
-        const response = await fetch('/api/world', {
+        const response = await fetch('/api/weather', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -53,17 +51,16 @@ export default class ZipCodeForm extends React.Component {
             body: JSON.stringify({ post: this.state.post }),
         });
         const body = await response.text();
-
         this.setState({ responseToPost: body });
     };
 
     render() {
         return (
             <div className='zip-code-form'>
-                <form onSubmit={this.handleSubmit}>
+                <form>
                     <label>
                         <input type="text" value={this.state.value} onChange={this.handleChange} />
-                        <input type="submit" value="Submit" className={'btn'}/>
+                        <div className={'btn'} onClick={this.handleSubmit}>Submit</div>
                     </label>
                 </form>
             </div>
