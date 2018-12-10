@@ -43,12 +43,8 @@ export default class ZipCodeForm extends React.Component {
     handleSubmit = async e => {
         console.log(this.state);
         e.preventDefault();
-        const response = await fetch('/api/weather', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({ post: this.state.post }),
+        const response = await fetch('/api/weather/', {  // add zip code as req param
+            method: 'GET',
         });
         const body = await response.text();
         this.setState({ responseToPost: body });
