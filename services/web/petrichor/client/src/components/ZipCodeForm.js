@@ -9,20 +9,53 @@ export default class ZipCodeForm extends React.Component {
         this.handleSubmit = this.handleSubmit.bind(this);
     }
 
-    handleChange(e) {
+    static isValidZipCode(e)  {
         const re = /^[0-9\b]+$/;
+        return e.target.value === ''
+            || re.test(e.target.value)
+            && e.target.value.length < 6
+    }
 
-        // if value is not blank, then test the regex
-
-        if (e.target.value === '' || re.test(e.target.value) && e.target.value.length < 6) {
+    handleChange(e) {
+        if (ZipCodeForm.isValidZipCode(e)) {
             this.setState({value: e.target.value})
         }
     }
 
-    handleSubmit(event) {
-        console.log('Zip Code: ' + this.state.value);
-        event.preventDefault();
+    state = {
+        response: '',
+        post: '',
+        responseToPost: '',
+    };
+
+    componentDidMount() {
+        this.callApi()
+            .then(res => this.setState({ response: res.express }))
+            .catch(err => console.log(err));
     }
+
+    callApi = async () => {
+        const response = await fetch('/api/hello');
+        const body = await response.json();
+
+        if (response.status !== 200) throw Error(body.message);
+
+        return body;
+    };
+
+    handleSubmit = async e => {
+        e.preventDefault();
+        const response = await fetch('/api/world', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ post: this.state.post }),
+        });
+        const body = await response.text();
+
+        this.setState({ responseToPost: body });
+    };
 
     render() {
         return (
