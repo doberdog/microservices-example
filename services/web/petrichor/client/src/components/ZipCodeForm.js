@@ -57,12 +57,10 @@ export default class ZipCodeForm extends React.Component {
     render() {
         return (
             <div className='zip-code-form'>
-                <form>
-                    <label>
-                        <input type="text" value={this.state.value} onChange={this.handleChange} />
-                        <div className={'btn'} onClick={this.handleSubmit}>Submit</div>
-                    </label>
-                </form>
+                <label>
+                    <input type="text" value={this.state.value} onChange={this.handleChange} />
+                    <div className={'btn'} onClick={this.handleSubmit}>Submit</div>
+                </label>
             </div>
         );
     }
