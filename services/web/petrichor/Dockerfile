@@ -13,4 +13,4 @@ RUN yarn install
 COPY . .
 
 EXPOSE 3000
-ENTRYPOINT yarn start
+ENTRYPOINT npm run dev
