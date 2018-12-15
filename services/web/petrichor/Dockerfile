@@ -7,11 +7,12 @@ RUN alias python=python3
 
 COPY package.json .
 COPY package-lock.json .
-# COPY yarn.lock .
+COPY yarn.lock .
 
 RUN npm install
 
 COPY . .
 
 EXPOSE 3000
+EXPOSE 5000
 ENTRYPOINT npm run dev
