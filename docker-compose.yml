@@ -50,12 +50,12 @@ services:
     - postgres
     - rabbitmq
 
-    web:
-      image: petrichor-web
-      build: ./services/web/petrichor/
-      ports:
-      - 3000:3000
-      - 5000:5000
-      depends_on:
-      - rabbitmq
-      - postgres
+  web:
+    image: petrichor-web
+    build: ./services/web/petrichor/
+    ports:
+    - 3000:3000
+    - 5000:5000
+    depends_on:
+    - rabbitmq
+    - postgres

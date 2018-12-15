@@ -13,6 +13,4 @@ RUN npm install
 
 COPY . .
 
-EXPOSE 3000
-EXPOSE 5000
 ENTRYPOINT npm run dev
