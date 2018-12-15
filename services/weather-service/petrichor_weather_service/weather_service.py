@@ -31,9 +31,9 @@ class WeatherService:
 
     @staticmethod
     def print_startup_message():
-        print("===========================")
-        print("Weather Service is started!")
-        print("===========================")
+        print("==========================")
+        print("Weather Service is started")
+        print("==========================")
 
     def setup_rabbit(self):
         self.rabbit_connector = RabbitMQConnector()

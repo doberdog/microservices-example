@@ -26,9 +26,9 @@ class LogService:
 
     @staticmethod
     def print_startup_message():
-        print("=======================")
-        print("Log Service is started!")
-        print("=======================")
+        print("======================")
+        print("Log Service is started")
+        print("======================")
 
     def setup_rabbit(self):
         self.rabbit_connector = RabbitMQConnector()
