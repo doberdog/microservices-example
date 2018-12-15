@@ -6,9 +6,10 @@ RUN apk update && apk add yarn python3
 RUN alias python=python3
 
 COPY package.json .
-COPY yarn.lock .
+COPY package-lock.json .
+# COPY yarn.lock .
 
-RUN yarn install
+RUN npm install
 
 COPY . .
 
